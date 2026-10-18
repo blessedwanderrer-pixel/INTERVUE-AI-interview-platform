@@ -27,7 +27,9 @@ class Settings(BaseSettings):
     groq_evaluation_max_attempts: int = 2
     gemini_evaluation_fallback_enabled: bool = False
     voice_ticket_ttl_seconds: int = 60
-    voice_max_session_minutes: int = 30
+    # Keep enough time for the completion request before Vercel's 300-second
+    # Hobby function limit terminates the live WebSocket invocation.
+    voice_max_session_seconds: int = 285
     voice_max_chunk_bytes: int = 32768
     voice_max_active_per_user: int = 1
 
