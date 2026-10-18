@@ -1,5 +1,0 @@
-Get-Content: 
-Line |
-   2 |  … alPath 'Warning: truncated output (original token count: 52211)' -Raw
-     |                                                                     ~~~~
-     | A parameter cannot be found that matches parameter name 'Raw'.
