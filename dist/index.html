@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="INTERVUE — evidence-first AI interview practice." />
+  <title>INTERVUE — Interview with signal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="phase2.css" />
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <div class="grain" aria-hidden="true"></div>
+  <header class="nav">
+    <a class="brand" href="#" aria-label="INTERVUE home"><span class="brand-mark">I</span> INTERVUE</a>
+    <nav aria-label="Primary"><a href="#how">How it works</a><a href="#principles">Principles</a></nav>
+    <button class="ghost-btn" data-action="open-auth">Sign in</button>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="home">
+      <div class="orb orb-one"></div><div class="orb orb-two"></div>
+      <div class="eyebrow"><span></span> Candidate practice lab / private by default</div>
+      <h1>Interview with<br><em>signal.</em> Not nerves.</h1>
+      <p class="lede">Turn your CV and a target role into a focused interview, then see exactly which answers shaped your evaluation.</p>
+      <div class="hero-actions">
+        <button class="primary" data-action="open-auth">Start a practice interview <b>↗</b></button>
+        <a href="#how">See the process</a>
+      </div>
+      <div class="trust-row">
+        <div><strong>01</strong><span>Your CV is stored privately</span></div>
+        <div><strong>02</strong><span>Every score links to evidence</span></div>
+        <div><strong>03</strong><span>No invented employer claims</span></div>
+      </div>
+      <div class="terminal-card" aria-hidden="true">
+        <div class="terminal-top"><i></i><i></i><i></i><span>INTERVUE / SESSION</span></div>
+        <p class="muted">QUESTION 03 · EXPERIENCE</p>
+        <p class="terminal-q">Tell me about a time you changed your approach after receiving difficult feedback.</p>
+        <div class="wave"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+        <div class="signal"><span>Listening for</span><b>context</b><b>action</b><b>result</b></div>
+      </div>
+    </section>
+
+    <section class="process" id="how">
+      <div class="section-label">The candidate flow</div>
+      <h2>One deliberate practice loop.</h2>
+      <div class="steps">
+        <article><span>01</span><h3>Bring your context</h3><p>Upload a CV, define the role, and choose an interview focus.</p></article>
+        <article><span>02</span><h3>Answer in real time</h3><p>A structured interviewer adapts follow-ups to the substance of your answers.</p></article>
+        <article><span>03</span><h3>Review the evidence</h3><p>See strengths, gaps, and answer excerpts behind every assessment.</p></article>
+      </div>
+    </section>
+
+    <section class="principles" id="principles">
+      <div><div class="section-label">Built for honest practice</div><h2>Useful feedback should be inspectable.</h2></div>
+      <ul><li><b>Evidence before adjectives</b><span>Evaluations cite the words that triggered them.</span></li><li><b>Uncertainty stays visible</b><span>Thin evidence lowers confidence instead of inventing certainty.</span></li><li><b>Candidate-owned context</b><span>Session data can be cleared from the browser at any time.</span></li></ul>
+    </section>
+  </main>
+
+  <footer><a class="brand" href="#"><span class="brand-mark">I</span> INTERVUE</a><p>Practice that leaves a trail of evidence.</p><span>Candidate MVP · 2026</span></footer>
+
+  <dialog id="authDialog">
+    <form class="modal" id="authForm">
+      <button class="close" type="button" data-action="close-auth" aria-label="Close">×</button>
+      <span class="mini-mark">I</span><p class="eyebrow">Secure candidate access</p><h2>Welcome to INTERVUE.</h2>
+      <p class="muted" id="authIntro">Sign in with your Supabase account or create one.</p>
+      <div class="auth-tabs"><button type="button" class="active" data-auth-mode="login">Sign in</button><button type="button" data-auth-mode="register">Create account</button></div>
+      <label id="nameLabel" hidden>Name<input id="name" autocomplete="name" placeholder="Your name" /></label>
+      <label>Email<input id="email" type="email" required autocomplete="email" placeholder="you@example.com" /></label>
+      <label>Password<input id="password" type="password" required minlength="8" autocomplete="current-password" placeholder="At least 8 characters" /></label>
+      <div class="status-message" id="authStatus" role="status" hidden></div>
+      <button class="primary" id="authSubmit">Sign in <b>→</b></button>
+      <button class="text-btn reset-link" type="button" id="resetPassword">Forgot password?</button>
+    </form>
+  </dialog>
+
+  <section class="app-shell" id="appShell" hidden aria-label="INTERVUE candidate workspace">
+    <aside><a class="brand" href="#"><span class="brand-mark">I</span> INTERVUE</a><p class="candidate-name"></p><ol class="progress"><li class="active">Profile</li><li>Setup</li><li>Interview</li><li>Evaluation</li><li>History</li></ol><button class="text-btn" id="showHistory">Interview history</button><button class="text-btn" id="exitApp">← Back to site</button></aside>
+    <div class="workspace">
+      <div class="app-top"><span id="stageLabel">01 / PROFILE</span><div><span class="sync-status" id="syncStatus"></span><button class="text-btn" id="logout">Log out</button></div></div>
+      <div class="global-status" id="globalStatus" role="status" hidden></div>
+      <section class="screen active" data-screen="profile">
+        <p class="eyebrow">Start with context</p><h2>What should your interviewer know?</h2><p class="muted wide">Upload a CV to your private candidate storage. Text is extracted securely by the backend.</p>
+        <label class="dropzone" for="cvFile"><span>＋</span><b>Choose your CV</b><small>PDF, DOCX or TXT · up to 5 MB</small><input id="cvFile" type="file" accept=".pdf,.doc,.docx,.txt" /></label>
+        <div class="file-status" id="fileStatus">No file selected</div><div class="result-actions"><button class="primary next" data-next="setup" disabled>Continue to setup <b>→</b></button><button class="ghost-btn" id="deleteCv" hidden>Delete stored CV</button></div>
+      </section>
+      <section class="screen" data-screen="setup">
+        <p class="eyebrow">Shape the session</p><h2>Configure your interview.</h2>
+        <div class="form-grid"><label>Target role<input id="role" placeholder="e.g. Product Designer" required /></label><label>Seniority<select id="seniority"><option>Early career</option><option selected>Mid-level</option><option>Senior</option><option>Lead</option></select></label><label>Focus<select id="focus"><option value="behavioral">Behavioral</option><option value="technical">Technical craft</option><option value="leadership">Leadership</option></select></label><label>Length<select id="length"><option value="4">Quick · 4 questions</option><option value="6" selected>Standard · 6 questions</option><option value="8">Deep · 8 questions</option></select></label></div>
+        <div class="consent"><span>MICROPHONE & AUDIO NOTICE</span><p>Voice interviews stream microphone audio to the INTERVUE server and Google Gemini for live processing. Raw audio is not retained. Transcripts are saved privately to your account. Headphones are recommended to prevent echo.</p></div>
+        <div class="setup-actions"><button class="primary" id="beginVoiceInterview">Start voice interview <b>◉</b></button><button class="ghost-btn" id="beginInterview">Use text interview</button></div>
+      </section>
+      <section class="screen voice-screen" data-screen="voice">
+        <div class="voice-header"><div><p class="eyebrow" id="voiceProgress">LIVE PRACTICE</p><h2 id="voiceRole">Voice interview</h2></div><span class="live-pill" id="voiceConnection"><i></i> CONNECTING</span></div>
+        <div class="voice-grid">
+          <article class="voice-panel interviewer-panel">
+            <div class="voice-orb" id="aiOrb" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+            <p class="eyebrow">AI INTERVIEWER</p><h3 id="aiState">Preparing the session…</h3><p id="currentVoiceQuestion" class="voice-question">The interviewer will introduce the session.</p>
+          </article>
+          <article class="voice-panel candidate-panel">
+            <div class="candidate-meter" id="candidateMeter" aria-hidden="true"></div>
+            <p class="eyebrow">YOUR MICROPHONE</p><h3 id="micState">Permission required</h3><p class="muted">Raw audio is processed live and not stored. Use headphones if the interviewer hears its own voice.</p>
+            <div class="voice-controls"><button class="ghost-btn" id="toggleMute" type="button" aria-pressed="false">Mute</button><button class="danger-btn" id="endVoiceInterview" type="button">End interview</button></div>
+            <time id="voiceTimer">00:00</time>
+          </article>
+        </div>
+        <aside class="transcript-panel"><div><p class="eyebrow">LIVE TRANSCRIPT</p><span id="transcriptStatus">Saved turn by turn</span></div><div id="voiceTranscript" class="voice-transcript" aria-live="polite"><p class="empty-state">Conversation will appear here.</p></div></aside>
+      </section>
+      <section class="screen interview-screen" data-screen="interview">
+        <div class="interview-head"><div><p class="eyebrow" id="questionCount">Question 1</p><h2 id="interviewRole">Interview</h2></div><span class="live-pill"><i></i> TEXT SESSION</span></div>
+        <div class="chat" id="chat" aria-live="polite"></div>
+        <form class="composer" id="answerForm"><label for="answer">Your answer</label><textarea id="answer" rows="4" placeholder="Take a moment. A strong answer gives context, action, and outcome." required></textarea><div><span id="wordCount">0 words</span><button class="primary">Send answer <b>↑</b></button></div></form>
+      </section>
+      <section class="screen" data-screen="evaluation">
+        <p class="eyebrow">Evidence review</p><h2>Your interview signal.</h2><p class="muted wide" id="summary"></p>
+        <div class="score-grid" id="scoreGrid"></div><h3 class="evidence-heading">Answer evidence</h3><div id="evidenceList" class="evidence-list"></div>
+        <div class="result-actions"><button class="primary" id="restart">Practice again <b>↻</b></button><button class="ghost-btn" id="downloadReport">Download report</button></div>
+      </section>
+      <section class="screen" data-screen="history">
+        <p class="eyebrow">Saved practice</p><h2>Your interview history.</h2><p class="muted wide">Resume unfinished sessions or reopen a completed heuristic report.</p>
+        <div class="history-list" id="historyList"><p class="empty-state">Loading interview history…</p></div>
+      </section>
+    </div>
+  </section>
+  <script src="runtime-config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
+
