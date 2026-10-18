@@ -1,0 +1,33 @@
+services:
+  - type: web
+    name: intervue-api
+    runtime: python
+    plan: free
+    region: singapore
+    rootDir: backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT --workers 1
+    healthCheckPath: /api/health
+    autoDeployTrigger: commit
+    envVars:
+      - key: ENVIRONMENT
+        value: production
+      - key: FRONTEND_ORIGINS
+        value: https://intervue-ai-interview-platform.vercel.app
+      - key: SUPABASE_URL
+        sync: false
+      - key: SUPABASE_ANON_KEY
+        sync: false
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: GEMINI_LIVE_MODEL
+        value: gemini-3.8-live
+      - key: GROQ_API_KEY
+        sync: false
+      - key: GROQ_EVALUATION_MODEL
+        value: openai/gpt-oss-20b
+      - key: GEMINI_EVALUATION_FALLBACK_ENABLED
+        value: "false"
+      - key: VOICE_MAX_ACTIVE_PER_USER
+        value: "1"
+
