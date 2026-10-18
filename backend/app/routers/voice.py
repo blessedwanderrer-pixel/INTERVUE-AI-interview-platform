@@ -107,7 +107,7 @@ async def voice_websocket(websocket: WebSocket, ticket: str = "") -> None:
         await websocket.accept()
         service = GeminiService(settings)
         async with service.live(instruction) as live:
-            await websocket.send_json({"type": "connected", "input_rate": 16000, "output_rate": 24000, "raw_audio_retained": False})
+            await websocket.send_json({"type": "connected", "input_rate": 16000, "output_rate": 24000, "raw_audio_retained": False, "max_session_seconds": settings.voice_max_session_seconds})
             await live.send_client_content(turns={"role": "user", "parts": [{"text": "Begin the interview now with the introduction and first question."}]}, turn_complete=True)
 
             async def client_to_gemini() -> None:
@@ -163,7 +163,7 @@ async def voice_websocket(websocket: WebSocket, ticket: str = "") -> None:
                     if go_away:
                         await websocket.send_json({"type": "reconnect_required"})
 
-            async with asyncio.timeout(settings.voice_max_session_minutes * 60):
+            async with asyncio.timeout(settings.voice_max_session_seconds):
                 tasks = [asyncio.create_task(client_to_gemini()), asyncio.create_task(gemini_to_client())]
                 done, pending = await asyncio.wait(tasks, return_when=asyncio.FIRST_COMPLETED)
                 for task in pending: task.cancel()
