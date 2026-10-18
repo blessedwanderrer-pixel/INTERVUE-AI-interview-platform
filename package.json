@@ -1,0 +1,9 @@
+{
+  "name": "intervue-ai-interview-platform",
+  "private": true,
+  "version": "3.0.0",
+  "scripts": {
+    "build": "node scripts/build-frontend.mjs"
+  }
+}
+
