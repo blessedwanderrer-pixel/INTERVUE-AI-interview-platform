@@ -107,6 +107,15 @@ def test_microphone_streaming_cleanup_and_denial_paths_exist():
     assert '"raw_audio_retained": False' in backend_source
 
 
+def test_vercel_voice_session_is_bounded_and_auto_completes():
+    settings = Settings()
+    assert settings.voice_max_session_seconds < 300
+    source = (Path(__file__).parents[2] / "app.js").read_text(encoding="utf-8")
+    assert "max_session_seconds" in source
+    assert "completeVoiceInterview('The five-minute interview limit was reached.')" in source
+    assert "clearTimeout(voice.durationTimeout)" in source
+
+
 @pytest.mark.asyncio
 async def test_duplicate_transcript_event_is_ignored(gateway):
     payload = {"session_id": "session", "user_id": "11111111-1111-4111-8111-111111111111", "client_event_id": "event-0001", "speaker": "candidate", "content": "A saved answer", "position": 0}
